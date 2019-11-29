@@ -29,7 +29,8 @@
         {% if current_user.is_authenticated %}   
           
           <button class="nav-link btn btn-outline-success dropdown-toggle" style="color:red" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{current_user.username}}</button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">            
+          <div style="margin-left:85%" class="dropdown-menu" aria-labelledby="dropdownMenuButton">            
+            <a class="btn btn-outline-danger" href="{{url_for('main.profile',name=current_user.username)}}">Profile</a>
             <a class="nav-link"></a>
             <a class="btn btn-outline-danger" href="{{url_for('auth.signout')}}">Sign out</a>
           </div>
