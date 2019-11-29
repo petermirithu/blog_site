@@ -25,9 +25,8 @@
     {% else %}  
       <p class="alert alert-danger">{{user.username}} has no bio</p>
       <br>
-      <a class="btn btn-outline-info" href="{{url_for('main.update_profile',name=user.username)}}">Edit Bio</a>
     {% endif %}
-
+    <a class="btn btn-outline-info" href="{{url_for('main.update_profile',name=user.username)}}">Edit Bio</a>
 
   </div>
   <div class="col-md-8">
@@ -38,10 +37,10 @@
         <div class="card-body">{{blog.body}}</div>
         <div class="card-footer">
           <ul>
-            <li>{{blog.posted_on}}</li>
-            <li>{{blog.posted_by}}<li>                        
+            <li class="card-text"><small class="text-muted">Posted On: {{blog.posted_on}}</small></li>              
+            <li class="card-text"><small class="text-muted">Posted By: {{blog.posted_by}}</small></li>                          
           </ul>
-          <a class="btn btn-success" href="">View Comments</a>
+           <a class="btn btn-success" href="{{url_for('main.comments',id=blog.id)}}">View Comments</a>
         </div>
       </div>
       {% endfor %}
