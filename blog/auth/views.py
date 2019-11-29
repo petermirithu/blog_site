@@ -50,7 +50,7 @@ def signout():
   view function that logs out a user once called
   '''
   logout_user()
-  render_template(url_for('main.index'))
+  return render_template('index.html')
 
 
 
