@@ -31,19 +31,29 @@
   </div>
   <div class="col-md-8">
     <h2>My Blogs</h2>
-    {% for blog in personalblogs %}
-      <div class="card">
-        <div class="card-header">{{blog.title}}</div>
-        <div class="card-body">{{blog.body}}</div>
-        <div class="card-footer">
-          <ul>
-            <li class="card-text"><small class="text-muted">Posted On: {{blog.posted_on}}</small></li>              
-            <li class="card-text"><small class="text-muted">Posted By: {{blog.posted_by}}</small></li>                          
-          </ul>
-           <a class="btn btn-success" href="{{url_for('main.comments',id=blog.id)}}">View Comments</a>
+    {% if personalblogs %}
+      {% for blog in personalblogs %}
+        <div class="card">
+          <div class="card-header">{{blog.title}}</div>
+          <div class="card-body">{{blog.body}}</div>
+          <div class="card-footer">
+            <ul>
+              <li class="card-text"><small class="text-muted">Category: {{blog.category}}</small></li>              
+              <li class="card-text"><small class="text-muted">Posted On: {{blog.posted_on}}</small></li>              
+              <li class="card-text"><small class="text-muted">Posted By: {{blog.posted_by}}</small></li>                          
+            </ul>
+            
+            <a class="btn btn-success" href="{{url_for('main.comments',id=blog.id)}}">View Comments</a>
+            {% if blog.posted_by==current_user.username %}
+              <a class="btn btn-outline-danger" href="{{url_for('main.delBlog',id=blog.id)}}">Delete Blog</a>
+            {% endif %}  
+          </div>
         </div>
-      </div>
-      {% endfor %}
+        {% endfor %}
+    {% else %}    
+      <h6 class="alert alert-danger">You have no Blogs {{user.username}}</h6>
+    {% endif %}  
+    
   </div>
 </div>
 {% endblock content %}
