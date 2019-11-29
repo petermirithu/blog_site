@@ -3,7 +3,7 @@ from . import main
 from flask_login import login_required,current_user
 from ..db_class import User,Blog,Comment
 from .. import db,photos
-from .forms import U_profileForm,blogForm
+from .forms import U_profileForm,blogForm,commentForm
 import markdown2
 
 @main.route('/')
@@ -93,6 +93,33 @@ def update_pic(name):
     db.session.commit()
 
   return redirect(url_for('main.profile', name=user.username))  
+
+@main.route('/blog/comments/<int:id>', methods=['GET','POST'])
+@login_required
+def comments(id):
+  '''
+  view function that render comment template containing comments for a blog
+  '''
+  form=commentForm()
+  if form.validate_on_submit():
+    body=form.body.data
+
+    new_comment=Comment(body=body,posted_by=current_user.username,blog_id=id)
+
+    new_comment.save_comment()
+
+    return redirect(url_for('.comments',id=id))
+
+  blog=Blog.query.filter_by(id=id).first()
+  blog_id=blog.id
+
+  title="Comments"
+  comments=Comment.get_comments(id)
+
+  return render_template('comments.html',title=title,blog_id=blog_id,comments=comments,form=form)
+
+
+
 
 
 
