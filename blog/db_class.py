@@ -90,6 +90,13 @@ class Blog(db.Model):
     personalblogs=Blog.query.filter_by(user_id=user_id).all()
     return personalblogs
 
+  def delete_blog(self):
+    '''
+    function that deletes a comment from the database
+    '''
+    db.session.delete(self)
+    db.session.commit()
+
   def __repr__(self)  :
     '''
     function that helps in debugging.
@@ -123,6 +130,13 @@ class Comment(db.Model):
     '''
     comments=Comment.query.filter_by(blog_id=id).all()
     return comments
+
+  def delete_comment(self):
+    '''
+    function that deletes a comment from the database
+    '''
+    db.session.delete(self)
+    db.session.commit()
 
 
   def __repr__(self)  :
