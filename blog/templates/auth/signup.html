@@ -13,8 +13,9 @@
     {% endfor %}
     </div>
 
-    <div class="col-md-6">{{wtf.quick_form(form)}}</div>
-    <div style="margin-top:20px;"><a href="{{url_for('auth.signup')}}" class="btn btn-outline-warning" style="color:black">Log in Instead!</a></div>
+    <div class="col-md-6">{{wtf.quick_form(form)}}
+      <div style="margin-top:20px;"><a href="{{url_for('auth.signin')}}" class="btn btn-outline-warning" style="color:black">Log in Instead!</a></div>
+    </div>
     <div class="col-md-3"></div>    
   </div>
 </div>
