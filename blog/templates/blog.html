@@ -24,6 +24,12 @@
               </ul>
               <a class="btn btn-success" href="{{url_for('main.comments',id=blog.id)}}">View Comments</a>
             </div>
+
+            {% if blog.posted_by==current_user.username %}
+              <a class="btn btn-outline-success" href="{{url_for('main.update_blog',id=blog.id)}}">Update Blog</a>
+              <a class="btn btn-outline-danger" href="{{url_for('main.delBlog',id=blog.id)}}">Delete Blog</a>
+            {% endif %}  
+
           </div>          
         {% endfor %}
 

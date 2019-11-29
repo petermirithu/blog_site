@@ -44,6 +44,31 @@ def new_blog():
 
   return render_template('new_blog.html',form=form)  
 
+@main.route('/blog/<int:id>/update', methods=['GET','POST'])  
+@login_required
+def update_blog(id):
+  '''
+  view function tha renders the update blog page indorder to update a blog
+  '''
+  blog_found=Blog.query.filter_by(id=id).first()    
+  
+  if blog_found is None:
+    abort(404)
+
+  form=blogForm()
+  if form.validate_on_submit():
+    blog_found.category=form.category.data
+    blog_found.title=form.title.data      
+    blog_found.body=form.body.data            
+    
+    db.session.add(blog_found)
+    db.session.commit()
+
+    return redirect(url_for('main.blog',category=blog_found.category))
+
+  title="Update Blog"
+  return render_template('updateblog.html',form=form,title=title)  
+
 @main.route('/profile/<name>')
 def profile(name):
   '''
@@ -101,6 +126,9 @@ def comments(id):
   view function that render comment template containing comments for a blog
   '''
   form=commentForm()
+  blog_Com=Blog.query.filter_by(id=id).first()
+  blog_by=blog_Com.posted_by
+
   if form.validate_on_submit():
     body=form.body.data
 
@@ -110,13 +138,39 @@ def comments(id):
 
     return redirect(url_for('.comments',id=id))
 
-  blog=Blog.query.filter_by(id=id).first()
-  blog_id=blog.id
 
   title="Comments"
   comments=Comment.get_comments(id)
 
-  return render_template('comments.html',title=title,blog_id=blog_id,comments=comments,form=form)
+  return render_template('comments.html',title=title,comments=comments,form=form,blog_by=blog_by)
+
+@main.route('/delComment/<int:id>')
+@login_required
+def delComment(id):
+  '''
+  view function that deletes a comment if only the comment belongs to the current user
+  '''
+  
+  comment=Comment.query.filter_by(id=id).first()
+
+  comment.delete_comment()
+
+  return redirect(url_for('main.comments',id=comment.blog_id))
+
+@main.route('/delBlog/<int:id>')
+@login_required
+def delBlog(id):
+  '''
+  view function that deletes a blog if only the blog belog belongs to the current user
+  '''
+  
+  blog_del=Blog.query.filter_by(id=id).first()
+
+  blog_del.delete_blog()
+
+  return redirect(url_for('main.blog',category=blog_del.category))
+
+
 
 
 
