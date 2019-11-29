@@ -79,7 +79,7 @@ class Blog(db.Model):
     '''
     function that gets blogs by category
     '''
-    blogs=Blog.query.filter_by(category=category)
+    blogs=Blog.query.filter_by(category=category).all()
     return blogs
 
   @classmethod
@@ -87,7 +87,7 @@ class Blog(db.Model):
     '''
     function that gets all blogs posted by a signle person
     '''
-    personalblogs=Blog.query.filter_by(user_id=user_id)
+    personalblogs=Blog.query.filter_by(user_id=user_id).all()
     return personalblogs
 
   def __repr__(self)  :
@@ -108,6 +108,22 @@ class Comment(db.Model):
   posted_by=db.Column(db.String(255))
   posted_on=db.Column(db.DateTime,default=datetime.utcnow)
   blog_id=db.Column(db.Integer,db.ForeignKey('blogs.id'))
+
+  def save_comment(self):
+    '''
+    function that saves a new comment to the database
+    '''
+    db.session.add(self)
+    db.session.commit()
+
+  @classmethod
+  def get_comments(cls,id):
+    '''
+    function that gets comments for a particular blog  
+    '''
+    comments=Comment.query.filter_by(blog_id=id).all()
+    return comments
+
 
   def __repr__(self)  :
     '''
