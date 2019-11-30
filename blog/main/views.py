@@ -43,17 +43,17 @@ def new_blog():
     new_blog=Blog(category=category,title=title,body=body_format,posted_by=current_user.username,user_id=current_user.id)
     new_blog.save_blog()
             
-    subscribers=Subscribe.get_subscribers()  
+    # subscribers=Subscribe.get_subscribers()  
 
-    if subscribers is None:
-      abort(404)
+    # if subscribers is None:
+      # abort(404)
 
-    else:
-      for sub in subscribers:        
-        mail_message("A new Blog Posted Check it out","email/new_blog",sub.email,sub=sub)
+    # else:
+      # for sub in subscribers:        
+        # mail_message("A new Blog Posted Check it out","email/new_blog",sub.email,sub=sub)
 
 
-      return redirect(url_for('main.blog', category=category))
+    return redirect(url_for('main.blog', category=category))
 
   return render_template('new_blog.html',form=form)  
 
