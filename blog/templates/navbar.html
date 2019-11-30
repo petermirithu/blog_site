@@ -1,12 +1,12 @@
-  <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-dark">
-    <a class="navbar-brand" href="/">Blog_post<img src="" witch="60px" height="50px"alt=""></a>
+  <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-transparent btn-outline-info">
+    <a class="navbar-brand" href="/"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLr2bma3X7VaUW1vgxIVIuVUvcOBbylTrSSOsrt47WKws3v46Wyw&s" witch="60px" height="50px"alt=""></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link btn btn-outline-success" style="color:red" href="/">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link btn btn-warning" style="color:black" href="/">Home <span class="sr-only">(current)</span></a>
         </li>            
 
         <li class="nav-item">
@@ -14,7 +14,7 @@
           </li>                       
 
         <div class="dropdown">
-          <button class="nav-link btn btn-outline-info dropdown-toggle" style="color:red" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Types of Blogs</button>
+          <button class="nav-link btn btn-info dropdown-toggle" style="color:black" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Types of Blogs</button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="nav-link btn btn-outline-info" href="/blog/Lifestyle Blogs">Lifestyle Blogs</a>
             <a class="nav-link btn btn-outline-info" href="/blog/Entertainment Blogs">Entertainment Blogs</a>
@@ -28,7 +28,7 @@
       <ul class="navbar-nav ml-auto">  
         {% if current_user.is_authenticated %}   
           
-          <button class="nav-link btn btn-outline-success dropdown-toggle" style="color:red" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{current_user.username}}</button>
+          <button class="nav-link btn btn-danger dropdown-toggle" style="color:black" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{current_user.username}}</button>
           <div style="margin-left:85%" class="dropdown-menu" aria-labelledby="dropdownMenuButton">            
             <a class="btn btn-outline-danger" href="{{url_for('main.profile',name=current_user.username)}}">Profile</a>
             <a class="nav-link"></a>
