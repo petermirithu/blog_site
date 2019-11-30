@@ -2,21 +2,29 @@
 
 {% import 'bootstrap/wtf.html' as wtf %}
 
-{% block content %}
-<div class="container">
-  <div class="row">
-    <div class="col-md-4">
-    {% for message in get_flashed_messages() %}
-      <div class="alert alert-danger">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        {{message}}
-    {% endfor %}
-    </div>
+{% block styles %}
+  {{super()}}
+  <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/forms.css')}}">
+{% endblock styles %}
 
-    <div class="col-md-4">{{wtf.quick_form(form)}}
-      <div style="margin-top:20px;"><a href="{{url_for('auth.signup')}}" class="btn btn-outline-warning" style="color:black">Create an Account if you dont have one!</a></div>
-    </div>
-    <div class="col-md-4"></div>    
+{% block content %}
+<div style="margin-top:10%" class="container">
+  <div class="row">  
+      <div class="col-md-4">
+      {% for message in get_flashed_messages() %}
+        <div class="alert alert-danger">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          {{message}}
+      {% endfor %}
+      </div>
+
+      <div class="col-md-4">
+        <div class="card">
+          {{wtf.quick_form(form)}}
+          <div style="margin-top:20px;"><a href="{{url_for('auth.signup')}}" class="btn btn-outline-warning" style="color:black">Create an Account if you dont have one!</a></div>
+        </div>
+      </div>
+      <div class="col-md-4"></div>        
   </div>
 </div>
 
