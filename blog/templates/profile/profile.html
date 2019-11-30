@@ -1,14 +1,16 @@
 {% extends 'base.html' %}
 
+{% import 'bootstrap/wtf.html' as wtf %}
+
 {% block content %}
 <div class="container">
-  <h1>Profile page for {{user.username}} <h1>
+  <h1 class="text-center"><u>Profile page for {{user.username}}</u><h1>
   <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-5">
     {% if user.profile_pic_path %}
       <img class="card" src="{{url_for('static',filename=user.profile_pic_path)}}" alt="Profile Pic" class="img-thumbnail" width="250px" height="250px">
     {% else %}  
-      <p class="alert alert-danger">No profile pic</p>
+      <h6 class="alert alert-danger">No profile pic</h6>
     {% endif %}  
     
     {% if user==current_user %}
@@ -21,34 +23,47 @@
     <h3>Name: {{user.username}}</h3>
     <h3>Bio</h3>
     {% if user.bio %}
-      <p>{{user.bio}}</p>
+      <h6>{{user.bio}}</h6>
     {% else %}  
-      <p class="alert alert-danger">{{user.username}} has no bio</p>
+      <h6 class="alert alert-danger">{{user.username}} has no bio</h6>
       <br>
     {% endif %}
     <a class="btn btn-outline-info" href="{{url_for('main.update_profile',name=user.username)}}">Edit Bio</a>
+    <br>
+    <hr>
+    <button class="nav-link btn btn-outline-success dropdown-toggle" style="color:red" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Subscribe to Blog Post web app</button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">            
+        {{wtf.quick_form(form)}}
+      </div>
+    <hr>
+    <h5 class="text-center">Quote per Minute</h5>
+    {% for quote in quote %}
+      <div class="card">
+        <h6>{{quote.quote}}</h6>
+        <h6><small>Author: {{quote.author}}</small></h6>
+      </div>
+    {% endfor %}     
 
   </div>
-  <div class="col-md-8">
-    <h2>My Blogs</h2>
+  <div class="col-md-7">
+    <h2><b><u>My Blogs</u></b></h2>
     {% if personalblogs %}
       {% for blog in personalblogs %}
         <div class="card">
-          <div class="card-header">{{blog.title}}</div>
-          <div class="card-body">{{blog.body}}</div>
-          <div class="card-footer">
-            <ul>
-              <li class="card-text"><small class="text-muted">Category: {{blog.category}}</small></li>              
-              <li class="card-text"><small class="text-muted">Posted On: {{blog.posted_on}}</small></li>              
-              <li class="card-text"><small class="text-muted">Posted By: {{blog.posted_by}}</small></li>                          
-            </ul>
-            
-            <a class="btn btn-success" href="{{url_for('main.comments',id=blog.id)}}">View Comments</a>
+          <h5><b>Title: {{blog.title}}</b></h5>
+          <h6><b><i>{{blog.body|safe}}</i></b></H6>
+          <h6>Category :{{blog.category}}</h6>
+          <h6 class="card-text"><small class="text-muted">Posted On: {{blog.posted_on}}</small></h6>              
+          <h6 class="card-text"><small class="text-muted">Posted By: {{blog.posted_by}}</small></h6>   
+
+          <div class="text-center">
+            <a class="btn btn-success" href="{{url_for('main.comments',id=blog.id)}}">View Comments</a>            
             {% if blog.posted_by==current_user.username %}
-              <a class="btn btn-outline-danger" href="{{url_for('main.delBlog',id=blog.id)}}">Delete Blog</a>
-            {% endif %}  
-          </div>
+            <a class="btn btn-outline-danger" href="{{url_for('main.delBlog',id=blog.id)}}">Delete Blog</a>
+            {% endif %}              
+          </div>                       
         </div>
+        <br>                          
         {% endfor %}
     {% else %}    
       <h6 class="alert alert-danger">You have no Blogs {{user.username}}</h6>

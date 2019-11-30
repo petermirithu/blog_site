@@ -1,15 +1,20 @@
 {% extends 'base.html' %}
 
+{% block styles %}
+  {{super()}}
+  <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/index.css')}}">
+{% endblock styles %}
+
 {% block content %}
-  <div class="container-fluid">
-    <h1>Welcome to Blog Post</h1>
+  <div class="container-fluid">    
+    <h1 class="text-center">Welcome to Blog Post</h1>
     <div class="row">
         <div class="col"><a href="/blog/Lifestyle Blogs">
-          <h3>Lifestyle Blogs</h3>
+          <h3 style="color:black">Lifestyle Blogs</h3>
           <div class="flip-box">
             <div class="flip-box-inner">
               <div class="flip-box-front">
-                <img src="./images/logomaker.jpeg" width="250px" height="200px">
+                <img src="https://howto.co.ke/wp-content/uploads/2019/01/41820514-lifestyle-word-cloud-fitness-sport-health-concept.jpg" width="250px" height="200px">
               </div>
               <div class="flip-box-back">
                 <h3>Lifestyle Blogs</h3>
@@ -21,11 +26,11 @@
         </div>  
 
         <div class="col"><a href="/blog/Entertainment Blogs">
-          <h3>Entertainment Blogs</h3>
+          <h3 style="color:black">Entertainment Blogs</h3>
           <div class="flip-box">
             <div class="flip-box-inner">
               <div class="flip-box-front">
-                <img src="./images/logomaker.jpeg" width="250px" height="200px">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4rY-7nrIe_ZMFGsW_tlxN1KK7iMC2eMuES-HZiX9SCos5IXks&s" width="250px" height="200px">
               </div>
               <div class="flip-box-back">
                 <h3>Entertainment Blogs</h3>
@@ -36,12 +41,28 @@
           </a>
         </div>  
 
-        <div class="col"><a href="/blog/Education Blogs">
-          <h3>Education Blogs</h3>
+        <div class="col"><a href="/blog/Religious Blogs">
+          <h3 style="color:black">Religious Blogs</h3>
           <div class="flip-box">
             <div class="flip-box-inner">
               <div class="flip-box-front">
-                <img src="./images/logomaker.jpeg" width="250px" height="200px">
+                <img src="https://www.history.com/.image/ar_16:9%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cg_faces:center%2Cq_auto:good%2Cw_768/MTY3NDcyMDYwNzAyOTI2NjM3/christianity-gettyimages-121153575.jpg" width="250px" height="200px">
+              </div>
+              <div class="flip-box-back">
+                <h3>Religious Blogs</h3>
+                <p>Get to read Blogs from bloggers whose blogs revolve the various types of religions</p>
+              </div>
+            </div>
+          </div>
+          </a>
+        </div>  
+
+        <div class="col"><a href="/blog/Education Blogs">
+          <h3 style="color:black">Education Blogs</h3>
+          <div class="flip-box">
+            <div class="flip-box-inner">
+              <div class="flip-box-front">
+                <img src="http://www.standardmedia.co.ke/images/friday/thumb_education_critical_t5cdf1649a3372.jpg" width="250px" height="200px">
               </div>
               <div class="flip-box-back">
                 <h3>Education Blogs</h3>
@@ -53,11 +74,11 @@
         </div>  
 
         <div class="col"><a href="/blog/Political Blogs">
-          <h3>Political Blogs</h3>
+          <h3 style="color:black">Political Blogs</h3>
           <div class="flip-box">
             <div class="flip-box-inner">
               <div class="flip-box-front">
-                <img src="./images/logomaker.jpeg" width="250px" height="200px">
+                <img src="https://www.voicesofyouth.org/sites/default/files/images/2019-01/politics3.jpg" width="250px" height="200px">
               </div>
               <div class="flip-box-back">
                 <h3>Political Blogs</h3>
@@ -68,22 +89,30 @@
           </a>
         </div>  
 
-        <div class="col"><a href="/blog/Relationship Blogs">
-          <h3>Relationship Blogs</h3>
+        <div class="col"><a href="/blog/Fashion Blogs">
+          <h3 style="color:black">Fashion Blogs</h3>
           <div class="flip-box">
             <div class="flip-box-inner">
               <div class="flip-box-front">
-                <img src="./images/logomaker.jpeg" width="250px" height="200px">
+                <img src="https://us.123rf.com/450wm/dizanna/dizanna1906/dizanna190600016/124399956-stock-vector-fashion-word-cloud-collage-concept-background.jpg?ver=6" width="250px" height="200px">
               </div>
               <div class="flip-box-back">
-                <h3>Relationship Blogs</h3>
-                <p>Get to read Blogs from bloggers whose blogs revolve the relationship sector</p>
+                <h3>fashion Blogs</h3>
+                <p>Get to read Blogs from bloggers whose blogs revolve the fashion ans style</p>
               </div>
             </div>
           </div>
           </a>
         </div>  
-            
+
     </div>
+    <br>
+    <h1 class="text-center">Quote per Minute</h1>
+    {% for quote in quote %}
+      <div class="card">
+        <p>{{quote.quote}}</p>
+        <p><small>Author: {{quote.author}}</small></p>
+      </div>
+    {% endfor %}              
   </div>
 {% endblock content %}

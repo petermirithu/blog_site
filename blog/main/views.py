@@ -1,18 +1,20 @@
 from flask import render_template,redirect,url_for,request,abort
 from . import main
 from flask_login import login_required,current_user
-from ..db_class import User,Blog,Comment
+from ..db_class import User,Blog,Comment,Subscribe
 from .. import db,photos
-from .forms import U_profileForm,blogForm,commentForm
+from .forms import U_profileForm,blogForm,commentForm,subscribeForm
 import markdown2
+from ..request import get_quotes
 
 @main.route('/')
 def index():
   '''
   view function that renders the home page on start up
   '''
+  quote=get_quotes()
   title='Blog_Site'
-  return render_template('index.html', title=title)
+  return render_template('index.html', title=title,quote=quote)
 
 @main.route('/blog/<category>')
 def blog(category):
@@ -34,10 +36,10 @@ def new_blog():
   if form.validate_on_submit():
     category=form.category.data    
     title=form.title.data
-    body=form.body.data
-    new_body=markdown2.markdown(body,extras=["code-friendly","fenced-code-blocks"])
+    new_body=form.form_body.data
+    body_format= markdown2.markdown(new_body,extras=["code-friendly", "fenced-code-blocks"])
 
-    new_blog=Blog(category=category,title=title,body=new_body,posted_by=current_user.username,user_id=current_user.id)
+    new_blog=Blog(category=category,title=title,body=body_format,posted_by=current_user.username,user_id=current_user.id)
     new_blog.save_blog()
 
     return redirect(url_for('main.blog', category=category))
@@ -59,7 +61,7 @@ def update_blog(id):
   if form.validate_on_submit():
     blog_found.category=form.category.data
     blog_found.title=form.title.data      
-    blog_found.body=form.body.data            
+    blog_found.body=markdown2.markdown(form.form_body.data,extras=["code-friendly", "fenced-code-blocks"])         
     
     db.session.add(blog_found)
     db.session.commit()
@@ -69,7 +71,7 @@ def update_blog(id):
   title="Update Blog"
   return render_template('updateblog.html',form=form,title=title)  
 
-@main.route('/profile/<name>')
+@main.route('/profile/<name>', methods=['GET','POST'])
 def profile(name):
   '''
   view function that renders the profile page once triggered
@@ -80,8 +82,19 @@ def profile(name):
   if user is None:
     abort(404)
 
+  form=subscribeForm()
+
+  if form.validate_on_submit():
+
+    new_sub=Subscribe(email=form.email.data)
+
+    new_sub.save_subscriber()
+
+    return redirect(url_for('main.profile',name=current_user.username))
+
   title='Profile'
-  return render_template('profile/profile.html',title=title,user=user,personalblogs=personalblogs)  
+  quote=get_quotes()
+  return render_template('profile/profile.html',title=title,user=user,personalblogs=personalblogs,form=form,quote=quote)  
 
 @main.route('/profile/<name>/update', methods=['GET','POST'])
 def update_profile(name):
@@ -169,7 +182,6 @@ def delBlog(id):
   blog_del.delete_blog()
 
   return redirect(url_for('main.blog',category=blog_del.category))
-
 
 
 

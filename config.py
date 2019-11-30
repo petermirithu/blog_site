@@ -7,10 +7,12 @@ class Config:
   SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://pyra:lotus@localhost/blog_db'
   SECRET_KEY=os.environ.get('SECRET_KEY')
 
+  BASE_URL='http://quotes.stormconsultancy.co.uk/random.json'
+
   UPLOADED_PHOTOS_DEST='blog/static/photos'
   
-  SIMPLEMDE_JS_IIFE=True
-  SIMPLE_USE_CD=True
+  SIMPLEMDE_JS_IIFE = True
+  SIMPLEMDE_USE_CDN = True
   
 
 class ProdConfig(Config):
