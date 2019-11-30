@@ -1,3 +1,17 @@
+body{
+  background-image: url("https://i.pinimg.com/originals/18/50/d9/1850d98a3b8e5cf81bb45739f20c0a01.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-attachment: fixed;  
+}
+h1{
+  color: rgb(233, 211, 10);
+}
+
+h3{
+  color: rgb(1, 235, 252);
+}
 .flip-box {
   background-color: transparent;
   width: 300px;
