@@ -145,6 +145,37 @@ class Comment(db.Model):
     '''
     return f'Comment {self.body}'
 
+class Subscribe(db.Model):
+  '''
+  class defining how users data who have subscribed will be stored
+  '''
+  __tablename="subscribes"
+  id=db.Column(db.Integer,primary_key=True)
+  email=db.Column(db.String(255), unique=True,index=True)
+
+  def save_subscriber(self):
+    '''
+    function that saves a subscriber in the db  
+    '''
+    db.session.add(self)
+    db.session.commit()
+    
+
+  def __repr__(self)  :
+    '''
+    function that helps in debugging.
+    '''
+    return f'Comment {self.body}'
+
+class Quote:
+  '''
+  class that defines instances for a quote
+  '''
+  def __init__(self,author,quote):
+    self.author=author
+    self.quote=quote
+    
+  
 
 
 

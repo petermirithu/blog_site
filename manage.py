@@ -1,6 +1,6 @@
 from blog import create_app,db
 from flask_script import Manager,Server
-from blog.db_class import User,Blog,Comment
+from blog.db_class import User,Blog,Comment,Subscribe
 from flask_migrate import Migrate,MigrateCommand
 
 app=create_app('development')
@@ -22,7 +22,7 @@ def test():
 
 @manager.shell
 def make_shell_context():
-  return dict(app=app,db=db,User=User,Blog=Blog,Comment=Comment)
+  return dict(app=app,db=db,User=User,Blog=Blog,Comment=Comment,Subscribe=Subscribe)
 
 if __name__=='__main__':
   manager.run()
