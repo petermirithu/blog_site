@@ -4,7 +4,6 @@ class Config:
   class containing the general configurations
   '''
   
-  SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://pyra:lotus@localhost/blog_db'
   SECRET_KEY=os.environ.get('SECRET_KEY')
 
   BASE_URL='http://quotes.stormconsultancy.co.uk/random.json'
@@ -31,12 +30,13 @@ class DevConfig(Config):
   class containing configurations for running the app in development mode
   '''
   DEBUG=True
+  SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://pyra:lotus@localhost/blog_db'
 
 class TestConfig(Config):
   '''
   test class containing configrations for running the tests
   '''
-  pass
+  SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://pyra:lotus@localhost/blog_test' 
 
 config_options={
   'production':ProdConfig,
