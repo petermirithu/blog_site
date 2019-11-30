@@ -15,8 +15,15 @@
     {% include 'navbar.html' %}  
   {% endblock navbar %}
 
+
+  {% block styles %}
+    {{super()}}
+    {{simplemde.css}}
+    {{simplemde.js}}
+  {% endblock styles %}
+      
   {% block content %}
   {% endblock content %}
-
+    
 </body>
 </html>
