@@ -78,7 +78,7 @@ class Blog(db.Model):
   def get_blogs(cls,category):
     '''
     function that gets blogs by category
-    '''
+    '''    
     blogs=Blog.query.filter_by(category=category).all()
     return blogs
 
@@ -159,6 +159,14 @@ class Subscribe(db.Model):
     '''
     db.session.add(self)
     db.session.commit()
+
+  @classmethod
+  def get_subscribers(cls):
+    '''
+    function that retrives all emails in subscribe table
+    '''
+    subscribers=Subscribe.query.all()
+    return subscribers
     
 
   def __repr__(self)  :

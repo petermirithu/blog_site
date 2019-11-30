@@ -6,6 +6,7 @@ from .. import db,photos
 from .forms import U_profileForm,blogForm,commentForm,subscribeForm
 import markdown2
 from ..request import get_quotes
+from ..email import mail_message
 
 @main.route('/')
 def index():
@@ -41,8 +42,18 @@ def new_blog():
 
     new_blog=Blog(category=category,title=title,body=body_format,posted_by=current_user.username,user_id=current_user.id)
     new_blog.save_blog()
+            
+    subscribers=Subscribe.get_subscribers()  
 
-    return redirect(url_for('main.blog', category=category))
+    if subscribers is None:
+      abort(404)
+
+    else:
+      for sub in subscribers:        
+        mail_message("A new Blog Posted Check it out","email/new_blog",sub.email,sub=sub)
+
+
+      return redirect(url_for('main.blog', category=category))
 
   return render_template('new_blog.html',form=form)  
 
