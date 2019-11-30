@@ -2,9 +2,15 @@
 
 {% import 'bootstrap/wtf.html' as wtf %}
 
+{% block styles %}
+  {{super()}}
+  <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/profile.css')}}">
+{% endblock styles %}
+
+
 {% block content %}
 <div class="container">
-  <h1 class="text-center"><u>Profile page for {{user.username}}</u><h1>
+  <h1 class="text-center"><u>Profile page for {{user.username}}</u></h1>
   <div class="row">
   <div class="col-md-5">
     {% if user.profile_pic_path %}
@@ -21,9 +27,9 @@
     </form>  
     {% endif %}
     <h3>Name: {{user.username}}</h3>
-    <h3>Bio</h3>
+    <h3>Bio:</h3>
     {% if user.bio %}
-      <h6>{{user.bio}}</h6>
+      <h4>{{user.bio}}</h4>
     {% else %}  
       <h6 class="alert alert-danger">{{user.username}} has no bio</h6>
       <br>
@@ -31,12 +37,12 @@
     <a class="btn btn-outline-info" href="{{url_for('main.update_profile',name=user.username)}}">Edit Bio</a>
     <br>
     <hr>
-    <button class="nav-link btn btn-outline-success dropdown-toggle" style="color:red" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Subscribe to Blog Post web app</button>
+    <button class="nav-link btn btn-info dropdown-toggle" style="color:black" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Subscribe to Blog Post web app</button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">            
         {{wtf.quick_form(form)}}
       </div>
     <hr>
-    <h5 class="text-center">Quote per Minute</h5>
+    <h5 style="color:gold" class="text-center">Quote per Minute</h5>
     {% for quote in quote %}
       <div class="card">
         <h6>{{quote.quote}}</h6>
