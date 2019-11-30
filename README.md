@@ -18,6 +18,19 @@ To view the site Click [Blog Post]()
 ## Description
   Blog post is a web application that gives users an opportunity to read and post blogs under various categories. Writers are also given an opportunity  to have an account and store their blogs
 
+## Specifications
+  * Behaviours
+  ```
+  * Displays the types of Blogs.       ~ When the page loads on start up.
+  * Displays Blogs for a type of Blog. ~ When one clicks on any type of blog on the screen. 
+  * Displays Comments for a Blog.      ~ When one clicks the comment button.
+  * Displays profile page.             ~ When on clicks a drop down menu with ones username.
+  * Updates a blog.                    ~ Applies only to a writer when the update button is clicked.
+  * Deletes a blog.                    ~ Apllies only to a writer when the delete button is clicked.
+  * Deletes all comments on a blog.    ~ Applies only to the writer of the blog when he/she clicks the delete button.
+  * Deletes a comment on a blog.       ~ Applies only to the comment owner when he/she clicks the delete button.
+  ```
+
 ## Setup Requirements
   Here's a brief introduction on what a developer must do in order to start running the app locally:
 
