@@ -53,7 +53,7 @@
           <h5><b>Title: {{blog.title}}</b></h5>
           <h6><b><i>{{blog.body|safe}}</i></b></H6>
           <h6>Category :{{blog.category}}</h6>
-          <h6 class="card-text"><small class="text-muted">Posted On: {{blog.posted_on}}</small></h6>              
+          <h6 class="card-text"><small class="text-muted">Posted On: {{blog.posted_on.strftime('%Y-%m-%d')}}</small></h6>              
           <h6 class="card-text"><small class="text-muted">Posted By: {{blog.posted_by}}</small></h6>   
 
           <div class="text-center">

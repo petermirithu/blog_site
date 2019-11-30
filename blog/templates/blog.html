@@ -28,7 +28,7 @@
                 <div class="card-body">{{blog.body|safe}}</div>
                 <div class="card-footer">
                   <ul>              
-                    <li class="card-text"><small class="text-muted">Posted On: {{blog.posted_on}}</small></li>              
+                    <li class="card-text"><small class="text-muted">Posted On: {{blog.posted_on.strftime('%Y-%m-%d')}}</small></li>              
                     <li class="card-text"><small class="text-muted">Posted By: {{blog.posted_by}}</small></li>                          
                   </ul>
                   {% if current_user.is_authenticated %}
