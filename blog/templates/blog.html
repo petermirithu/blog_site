@@ -1,41 +1,58 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1 class="text-center">{{title}}</h1>
-  {% if current_user.is_authenticated %}
-
-    <a class="btn-block btn-outline-warning" href="{{url_for('main.new_blog')}}">Post a Blog</a>
-  {% else %}  
-    <a class="btn-blocl btn-outline-secondary" href="{{url_for('auth.signin')}}">Sign in to post</a>
-  {% endif %}  
-
+  <h1 class="text-center">{{title}}</h1>  
   <div class="container">
     <div class="row">
-      {% if blogs %}
+      <div class="col-md-2">
+        <div class="dropdown">          
+          <a class="nav-link btn btn-warning" href="/blog/Lifestyle Blogs">Lifestyle Blogs</a><br>
+          <a class="nav-link btn btn-warning" href="/blog/Entertainment Blogs">Entertainment Blogs</a><br>
+          <a class="nav-link btn btn-warning" href="/blog/Education Blogs">Education Blogs</a><br>
+          <a class="nav-link btn btn-warning" href="/blog/Political Blogs">Political Blogs</a><br>
+          <a class="nav-link btn btn-warning" href="/blog/Fashion Blogs">Fashion Blogs</a><br>  
 
-        {% for blog in blogs %}
-          <div class="card">
-            <div class="card-header">{{blog.title}}</div>
-            <div class="card-body">{{blog.body}}</div>
-            <div class="card-footer">
-              <ul>              
-                <li class="card-text"><small class="text-muted">Posted On: {{blog.posted_on}}</small></li>              
-                <li class="card-text"><small class="text-muted">Posted By: {{blog.posted_by}}</small></li>                          
-              </ul>
-              <a class="btn btn-success" href="{{url_for('main.comments',id=blog.id)}}">View Comments</a>
-            </div>
+          {% if current_user.is_authenticated %}
+            <a class="btn btn-outline-info" href="{{url_for('main.new_blog')}}">Post a Blog</a>
+          {% else %}  
+            <a class="btn btn-outline-info" href="{{url_for('auth.signin')}}">Sign in to post</a>
+          {% endif %}     
+        </div>
+      </div>
+      <div class="col-md-10">
+          {% if blogs %}
 
-            {% if blog.posted_by==current_user.username %}
-              <a class="btn btn-outline-success" href="{{url_for('main.update_blog',id=blog.id)}}">Update Blog</a>
-              <a class="btn btn-outline-danger" href="{{url_for('main.delBlog',id=blog.id)}}">Delete Blog</a>
-            {% endif %}  
+            {% for blog in blogs %}
+              <div style="margin-left:10px" class="card">
+                <div class="card-header"><b>Title: {{blog.title}}</b></div>
+                <div class="card-body">{{blog.body|safe}}</div>
+                <div class="card-footer">
+                  <ul>              
+                    <li class="card-text"><small class="text-muted">Posted On: {{blog.posted_on}}</small></li>              
+                    <li class="card-text"><small class="text-muted">Posted By: {{blog.posted_by}}</small></li>                          
+                  </ul>
+                  {% if current_user.is_authenticated %}
+                    <a class="btn btn-success" href="{{url_for('main.comments',id=blog.id)}}">View Comments</a>
+                  {% else %}  
+                    <a class="btn btn-success" href="{{url_for('auth.signin')}}">Sign in to View Comments</a>
+                  {% endif %}  
+                </div>
 
-          </div>          
-        {% endfor %}
+                <div>
+                {% if blog.posted_by==current_user.username %}
+                  <a class="btn btn-outline-primary" href="{{url_for('main.update_blog',id=blog.id)}}">Update Blog</a>
+                  <a class="btn btn-outline-danger" href="{{url_for('main.delBlog',id=blog.id)}}">Delete Blog</a>
+                {% endif %}  
+                </div>            
+              </div>    
+              <br>         
+            {% endfor %}
 
-      {% else %}  
-        <h4 class="alert alert-dismissible">There are No Blogs for this category!</h4>
-      {% endif %}  
+          {% else %}  
+            <h4 class="alert alert-dismissible">There are No Blogs for this category!</h4>
+          {% endif %}  
+      </div>
     </div>
   </div>
+  
 {% endblock content %}
