@@ -31,7 +31,7 @@ class subscribeForm(FlaskForm):
   class that defines how the subscribe form shall look like
   '''
   email=StringField('Enter your email address',validators=[Required(),Email()])
-  submit=SubmitField('Subscirbe')  
+  submit=SubmitField('Subscribe')  
 
   def validate_email(self,data_field):
     '''
