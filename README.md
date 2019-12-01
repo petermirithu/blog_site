@@ -22,13 +22,20 @@ To view the site Click [Blog Post]()
   * Behaviours
   ```
   * Displays the types of Blogs.       ~ When the page loads on start up.
+
   * Displays Blogs for a type of Blog. ~ When one clicks on any type of blog on the screen. 
-  * Displays Comments for a Blog.      ~ When one clicks the comment button.
-  * Displays profile page.             ~ When on clicks a drop down menu with ones username.
-  * Updates a blog.                    ~ Applies only to a writer when the update button is clicked.
-  * Deletes a blog.                    ~ Apllies only to a writer when the delete button is clicked.
-  * Deletes all comments on a blog.    ~ Applies only to the writer of the blog when he/she clicks the delete button.
-  * Deletes a comment on a blog.       ~ Applies only to the comment owner when he/she clicks the delete button.
+
+  * Displays Comments for a Blog.      ~ When one clicks the comment button on a blog.
+
+  * Displays profile page.             ~ When one clicks a drop down menu with current_user's username.
+
+  * Updates a blog.                    ~ Applies only to a writer when the update button on a blog is clicked.
+
+  * Deletes a blog.                    ~ Applies only to a writer when the delete button on a blog is clicked.
+
+  * Deletes any/all comment on a blog. ~ Applies only to a writer when the delete button on a comment is clicked.
+
+  * Deletes a comment on a blog.       ~ Applies only to the comment owner when the delete button on a comment is clicked
   ```
 
 ## Setup Requirements
