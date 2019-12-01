@@ -2,7 +2,7 @@
 
 This project was generated with [Python](https://www.python.org/) version 3.8.0 <br>
 
-![picture](./blog/static/logo/blogPost.png)
+![picture](./blog/static/logo/logo.png)
 
 To view the site Click [Blog Post]()
 
