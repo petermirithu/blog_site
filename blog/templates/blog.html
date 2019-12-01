@@ -6,7 +6,7 @@
 {% endblock styles %}
 
 {% block content %}
-  <h1 style="color:gold" class="text-center">{{title}}</h1>  
+  <h1 class="jumbotron">{{title}}</h1>  
   <div class="container">
     <div class="row">
       <div class="col-md-2">
@@ -28,9 +28,9 @@
           {% if blogs %}
 
             {% for blog in blogs %}
-              <div style="margin-left:10px" class="card">
-                <div class="card-header"><b>Title: {{blog.title}}</b></div>
-                <div class="card-body">{{blog.body|safe}}</div>
+              <div style="margin-left:10px" class="card bg-dark">
+                <div style="color:lightblue" class="card-header"><b>Title: {{blog.title}}</b></div>
+                <div style="color:lightblue" class="card-body">{{blog.body|safe}}</div>
                 <div class="card-footer">
                   <ul>              
                     <li class="card-text"><small class="text-muted">Posted On: {{blog.posted_on.strftime('%Y-%m-%d')}}</small></li>              

@@ -10,7 +10,7 @@
 
 {% block content %}
 <div class="container">
-  <h1 class="text-center"><u>Profile page for {{user.username}}</u></h1>
+  <h1 class="jumbotron">Profile page for {{user.username}}</h1>
   <div class="row">
   <div class="col-md-5">
     {% if user.profile_pic_path %}
@@ -55,10 +55,10 @@
     <h2><b><u>My Blogs</u></b></h2>
     {% if personalblogs %}
       {% for blog in personalblogs %}
-        <div class="card">
-          <h5><b>Title: {{blog.title}}</b></h5>
-          <h6><b><i>{{blog.body|safe}}</i></b></H6>
-          <h6>Category :{{blog.category}}</h6>
+        <div class="card bg-dark">
+          <h5 style="color:lightblue"><b>Title: {{blog.title}}</b></h5>
+          <h6 style="color:lightblue"><b><i>{{blog.body|safe}}</i></b></H6>
+          <h6 style="color:lightblue">Category :{{blog.category}}</h6>
           <h6 class="card-text"><small class="text-muted">Posted On: {{blog.posted_on.strftime('%Y-%m-%d')}}</small></h6>              
           <h6 class="card-text"><small class="text-muted">Posted By: {{blog.posted_by}}</small></h6>   
 

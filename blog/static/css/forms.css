@@ -5,3 +5,11 @@ body{
   background-position: 50% 50%;
   background-attachment: fixed;  
 }
+.jumbotron{
+  text-align: center;
+  color:black;
+  background-color: gray;
+  padding: 10px;
+  font-family: 'Akronim', cursive;
+  font-size: 50px;
+}

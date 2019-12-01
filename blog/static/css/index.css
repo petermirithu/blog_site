@@ -5,12 +5,9 @@ body{
   background-position: 50% 50%;
   background-attachment: fixed;  
 }
-h1{
-  color: rgb(233, 211, 10);
-}
-
 h3{
   color: rgb(1, 235, 252);
+  font-family: 'Fredericka the Great', cursive;
 }
 .flip-box {
   background-color: transparent;
@@ -43,4 +40,13 @@ h3{
   background-color: black;
   color: white;
   transform: rotateY(180deg);
+}
+
+.jumbotron{
+  text-align: center;
+  color:black;
+  background-color: gray;
+  padding: 10px;  
+  font-family: 'Akronim', cursive;
+  font-size: 50px;
 }
