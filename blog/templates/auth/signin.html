@@ -11,15 +11,14 @@
 <h1 class="jumbotron">Sign In</h1>
 <div style="margin-top:10%" class="container">
   <div class="row">  
+      <div class="col-md-4"></div>
       <div class="col-md-4">
-      {% for message in get_flashed_messages() %}
-        <div class="alert alert-danger">
-          <button type="button" class="close" data-dismiss="alert">&times;</button>
-          {{message}}
-      {% endfor %}
-      </div>
-
-      <div class="col-md-4">
+        {% for message in get_flashed_messages() %}
+          <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{message}}
+          </div>  
+        {% endfor %}
         <div class="card">
           {{wtf.quick_form(form)}}
           <div style="margin-top:20px;"><a href="{{url_for('auth.signup')}}" class="btn btn-outline-warning" style="color:black">Create an Account if you dont have one!</a></div>
