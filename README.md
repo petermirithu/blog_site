@@ -1,10 +1,10 @@
-# [Blog Post]()
+# [Blog Post](https://blogpost007.herokuapp.com/)
 
 This project was generated with [Python](https://www.python.org/) version 3.8.0 <br>
 
 ![picture](./blog/static/logo/logo.png)
 
-To view the site Click [Blog Post]()
+To view the site Click [Blog Post](https://blogpost007.herokuapp.com/)
 
 ## Author: 
   * [Peter Mirithu](https://github.com/petermirithu/blog_site)
